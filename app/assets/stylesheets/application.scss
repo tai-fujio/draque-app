@@ -1,0 +1,20 @@
+@import "bootstrap";
+​
+body {
+  background-color: #272B2F;
+  color: white;
+}
+​
+​
+.base-container {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+​
+.game-font {
+  font-size: 1.3rem;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
+}
