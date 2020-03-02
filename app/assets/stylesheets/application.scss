@@ -1,0 +1,28 @@
+@import "bootstrap";
+
+$backbround-color: green;
+
+body {
+  // background-color: $backbround-color;
+  background-image: url("../../media/examples/lizard.png");
+  color: white;
+}
+
+.base-container {
+  @extend .container-fluid;
+    // .container-fluid：boostrap
+    //  後ろのセレクタの継承
+  max-width: 576px;
+  padding:2rem;
+  //rootが16px/その２倍
+  background-image: ;
+
+}
+
+.game-font {
+  font-size: 1.3rem;
+  @media screen and (max-width: 450px){
+    font-size: 1rem;
+    // 450pxまでは1remで
+  }
+}
