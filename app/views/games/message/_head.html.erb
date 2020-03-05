@@ -1,0 +1,14 @@
+<div class="message-container mb-5">
+  <div class="px-4 py-3 message-box">
+    <div class="my-2">
+      <%= button_to "Attack", start_path,class:"btn btn-black btn-block", remote:true,method: :get,data:{toggle: "modal",target:"#battle-modal"} %>
+      <%# deta-target:モーダルと繋げるのに必要。一致させないとだめ %>
+    </div>
+  </div>
+  <hr class= "line">
+  <div class="px-4 py-3 message-box">
+    <button type="button" class="btn btn-black btn-block my-2" data-toggle="modal" data-target="#edit-modal">
+    Setting
+    </button>
+  </div>
+</div>
