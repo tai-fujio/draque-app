@@ -1,22 +1,27 @@
 @import "bootstrap";
 
-$backbround-color: green;
+$background-color: black;
 
 body {
-  // background-color: $backbround-color;
-  background-image: url("../../media/examples/lizard.png");
+  // background-color: $background-color;
   color: white;
+  background-image: url("bg/Labyrinth.jpg");
+  background-size: cover;
+  background-position: center center;
+  font-family: fantasy;
+  
 }
 
 .base-container {
   @extend .container-fluid;
-    // .container-fluid：boostrap
+    // .container-fluid：bootstrap
     //  後ろのセレクタの継承
+  background-color: $background-color;
   max-width: 576px;
   padding:2rem;
   //rootが16px/その２倍
-  background-image: ;
-
+  // height: 100vh;
+  
 }
 
 .game-font {
@@ -26,3 +31,90 @@ body {
     // 450pxまでは1remで
   }
 }
+
+.game-container{
+  margin:0 auto;
+  border: 3px solid white;
+  border-radius: 5px;
+  position: relative;
+  padding:2rem;
+  max-width: 400px;
+}
+
+.game-name{
+  background-color: $background-color;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 5px 5px 0 5px;
+  transform: translate(-50%,-50%);
+  // 要素の縦横のサイズを基準の数値で動く。
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.text-center{
+  height: 300px;
+  color: black;
+  font-weight: bold;
+  position: relative;
+}
+
+.monster_name {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-shadow:2px 2px  white;
+  
+}
+
+.monster-bg{
+  width: 100%;
+  height: 100%;
+  border: 3px solid white;
+  border-radius: 5px;
+
+}
+
+.monster-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  img{
+    margin-top: 100px;
+  }
+}
+
+.line{
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+.message-container{
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+
+.btn{
+  color: white;
+  border-color: gray;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  border-width: 2.0px;
+  &:hover {
+    color: white;
+    border-color: pink;
+    background-color: darkcyan;
+  }
+}
+
+
+

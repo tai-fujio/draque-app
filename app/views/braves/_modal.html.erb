@@ -1,0 +1,25 @@
+<div class="modal" tabindex="-1" role="dialog" id="edit-modal" data-backdrop="static" aria-labelledby="change-name-label" aria-hidden="true">
+<%# idでボタンと繋いでる。backdropで背景を押してもモーダルが消えないように。また、背景を目立たなくしてくれる%>
+  <div class="modal-dialog modal-dialog-centered"  role="document">
+    <%# modal-dialog-centeredでモーダルをセンターに %>
+    <div class="modal-content bg-dark text-center">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Setting</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body">
+          <%= render "braves/body" %>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <%= render "braves/footer" %>
+      </div>
+
+    </div>
+  </div>
+</div>

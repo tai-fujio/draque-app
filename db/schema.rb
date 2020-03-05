@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_015600) do
+ActiveRecord::Schema.define(version: 2020_03_04_031654) do
+
+  create_table "braves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.integer "level", null: false
+    t.bigint "exp", null: false
+    t.integer "max_hp", null: false
+    t.integer "offense", null: false
+    t.integer "defense", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_braves_on_user_id"
+  end
+
+  create_table "monsters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image", null: false
+    t.string "bg_image", null: false
+    t.integer "recommended_level", null: false
+    t.integer "max_hp", null: false
+    t.integer "offense", null: false
+    t.integer "defense", null: false
+    t.integer "exp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_monsters_on_name"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,4 +51,5 @@ ActiveRecord::Schema.define(version: 2020_03_02_015600) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "braves", "users"
 end
