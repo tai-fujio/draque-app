@@ -1,0 +1,9 @@
+document.getElementById("battle-status").innerHTML = "<%= j(render 'games/status/battle_status') %>"
+battleMonsterImageBg.innerHTML = "<%= j(render 'games/monster/bg') %>"
+document.getElementById("battle-monster-name").innerText = "<%= @monster.name %>"
+battleMonsterImage.innerHTML = "<%= j(render 'games/monster/image') %>"
+
+battleMonster.style.opacity = "1"
+battleMessages.innerHTML = "<%= Message.start(@monster) %>"
+battleButtonContainer.style.display = "block"
+<%# startアクションの際起動 %>

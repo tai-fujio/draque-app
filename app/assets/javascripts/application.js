@@ -20,3 +20,24 @@
 
 //= require turbolinks
 //= require_tree .
+
+// js.erb 内でも使用したい変数は， let や constではなく， window.〜 や global.〜 という変数名にする必要があり。
+document.addEventListener("turbolinks:load",()=>{
+    const battleButton = document.getElementById("battle-button")
+    window.battleBody = document.getElementById("battle-body")
+
+    window.battleMonster = document.getElementById("battle-monster")
+    window.battleMonsterImage = document.getElementById("battle-monster-image")
+    window.battleMonsterImageBg = document.getElementById("monster-bg-image")
+
+
+    window.battleMessages = document.getElementById("battle-messages")
+    window.battleButtonContainer = document.getElementById("battle-button-container")
+
+    battleButton.addEventListener("click",() =>{
+        battleButtonContainer.style.display = "none"
+        battleMessages.innerText = ""
+    })
+})
+
+
