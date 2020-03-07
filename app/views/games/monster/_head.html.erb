@@ -1,8 +1,9 @@
 <div class = "py-4 text-center" id ="top-monster">
-  <%= image_tag "bg/#{@monster.bg_image}", class: "monster-bg"%> 
-  <p class = "monster_name"><%= @monster.name %></p>
-  <div class = monster-image>
+  <div class="head-image" id="monster-image-bg">
+    <%= render "games/monster/bg" %>
+  </div>
+  <p class = "monster_name" id="top-monster-name"><%= @monster.name %></p>
+  <div class = monster-image id="top-monster-image">
     <%= render "games/monster/image" %>
   </div>
-  
 </div>
