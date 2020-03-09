@@ -23,9 +23,7 @@ class GamesController < ApplicationController
   end
 
   def battle
-
     battle_start
-  
     # モンスターか勇者のHPが０以下になった時の処理
     if @monster.hp <= 0
       victory_brave
@@ -34,21 +32,45 @@ class GamesController < ApplicationController
       lose_brave
       finish_battle
     end
-    
     @all_messages = all_messages
-
   end
 
-  
+  def skill
+    skill_battle_start
+    if @monster.hp <= 0
+      victory_brave
+      finish_battle
+    elsif @brave.hp <= 0
+      lose_brave
+      finish_battle
+    end
+    @all_messages = all_messages
+  end 
 
   private
-
-    
 
     def battle_start
       @brave = Brave.new(session[:brave])
       @monster = Monster.new(session[:monster])
       @brave.attack(@monster)
+      session[:monster]["hp"] = @monster.hp
+      # モンスターhpの更新
+      @monster_damage_messages = Message.damage(attacker:@brave, defender:@monster)
+      if @monster.hp.positive?
+        # hpが0以上か確認する。0以上なら処理実行
+        @monster.attack(@brave)
+        # 勇者HPの更新
+        session[:brave]["hp"] = @brave.hp
+        @brave_damage_messages = Message.damage(attacker:@monster, defender:@brave)
+      end
+      
+      battle_info
+    end
+
+    def skill_battle_start
+      @brave = Brave.new(session[:brave])
+      @monster = Monster.new(session[:monster])
+      @brave.skill_attack(@monster)
       session[:monster]["hp"] = @monster.hp
       # モンスターhpの更新
       @monster_damage_messages = Message.damage(attacker:@brave, defender:@monster)

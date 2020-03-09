@@ -1,0 +1,118 @@
+var monsterDmgLgt = <%= @monster_damage_messages&.length || 0 %>
+<%# メッセージはmonsterDamage以外nilの場合がある。その場合0が入るように。 %>
+var braveDmgLgt = <%= @brave_damage_messages&.length || 0 %>
+var victoryLgt = <%= @victory_messages&.length || 0 %>
+var loseLgt = <%= @lose_messages&.length || 0 %>
+
+var allLgt = <%= @all_messages.length %>
+var allMessages = <%= raw @all_messages.to_json %>
+
+
+<%# jsでrubyの文字コードを使う場合.to_json必要。
+rowメソッドエスケープ処理をさせないようにしてれる %>
+
+var output = 0
+var time
+var timeout = 500
+<%# ミリ単位0.8秒 %>
+
+var flashTimer
+var monsterRcvDmg = function(){
+    if (output === monsterDmgLgt - 1){
+        flashTimer = setInterval(function(){
+            battleMonsterImage.style.opacity ^= "1" 
+        },50)
+    }else if(output === monsterDmgLgt){
+        clearInterval(flashTimer)
+        battleMonsterImage.style.opacity = "1"
+    }
+}
+
+var braveRcvDmg = function(){
+    if (output === monsterDmgLgt + braveDmgLgt - 1){
+        document.getElementById("battle-hp").innerText = "<%= session[:brave]["hp"] %>"
+        <%# hpを更新し入れ込む %>
+        battleBody.classList.add("swing")
+        <%# swingクラスを追加しscssで揺らす %>
+        timeout = 1000
+    }else if(output === monsterDmgLgt + braveDmgLgt){
+         battleBody.classList.remove("swing")
+    }
+}
+
+var continueBattle = function(){
+    if(output === allLgt){
+        battleMessages.innerHTML = " "
+        <%# battleMessagesに空のテキスト %>
+        battleButtonContainer.style.display = "block"
+        exitButtonContainer.style.display = "block"
+        skillButtonContainer.style.display = "block"
+        <%# battleButtonContainerを表示 %>
+    }
+}
+
+
+
+<% if @victory_messages.present? || @lose_messages.present? %>
+var vanishMonster = function(){
+    if (output === monsterDmgLgt + braveDmgLgt){
+        <%# モンスターの文字と画像を消す %>
+        battleMonster.style.opacity = "0"
+        timeout = 1500
+    }
+}
+
+var comeMonster = function(){
+    if (output === allLgt){
+        document.getElementById("top-status").innerHTML = "<%= j(render "games/status/head_status") %>"
+        document.getElementById("monster-image-bg").innerHTML = "<%= j(render 'games/monster/bg') %>"
+        document.getElementById("top-monster-name").innerText = "<%= @monster.name %>"
+        document.getElementById("top-monster-image").innerHTML = "<%= j(render 'games/monster/image') %>"
+        $("#battle-modal").modal("hide")
+    }
+}
+<%# outputの値と全てのメッセージ数が同じなら %>
+<%# そしてリロード %>
+<% end %>
+
+
+var writeMessage = function(){
+    if (output < allLgt){
+        battleMessages.insertAdjacentHTML("beforeend","<p>" + allMessages[output] + "</p>")
+    }
+}
+
+
+
+<%# elementつまりbattleMessagesの直前（beforeendにより）に第二引数を入れ込む。 %>
+<%# allMessagesの中の配列のoutput番目のものを出力。 %>
+
+var messageFeed = function(){
+    monsterRcvDmg()
+
+    if (victoryLgt > 0){
+        vanishMonster()
+        comeMonster() 
+    }else if(loseLgt > 0){
+        braveRcvDmg()
+        if (output === monsterDmgLgt + braveDmgLgt - 1)
+        timeout = 2000
+        comeMonster()
+    }else{
+        braveRcvDmg()
+        continueBattle()
+    }
+
+
+    <%# 1プラスする %>
+    <%# messageFeed入れることで繰り返すように処理をさせる %>
+    <%# メッセージ総数より数が大きくなると、clearTimeoutによりTimeoutストップ %>
+    writeMessage()
+
+    output++
+    time = setTimeout(messageFeed, timeout)
+    if(output > allLgt)clearTimeout(time)
+}
+
+messageFeed()
+

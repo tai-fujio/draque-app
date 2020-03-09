@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/start", to: "games#start"
   get "/battle", to: "games#battle"
   get "/exit", to: "games#exit"
-  # 上3つresourcesに存在するアクションとは別のオリジナル
+  get "/skill", to: "games#skill"
+  
   resources :braves, only: :update
 end
