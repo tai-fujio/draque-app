@@ -30,9 +30,31 @@ class Brave < ApplicationRecord
     # モンスターのHPが0以下になったら0にする。
   end
 
+  def skill_attack(monster)
+    monster.hp -= monster.damage = skill_damage_calc(attacker: self,defender: monster)
+    monster.hp = 0 if monster.hp < 0
+    # モンスターのHPが0以下になったら0にする。
+  end
+
+
+
   def lose_exp(lose_exp)
     self.exp -= lose_exp / 2
     self.exp = 0 if self.exp < 0
+  end
+
+  def current_level
+    level = ExpTable.where("exp > ?", self.exp).minimum(:level)
+    level.present? ? level :ExpTable.maximum(:level) + 1
+  end
+
+  def status_up(level_up_timing)
+    level_up_timing.times do
+      self.max_hp += brave_status_up(self.level)
+      self.offense += brave_status_up(self.level)
+      self.defense += brave_status_up(self.level)
+      self.level += 1
+    end
   end
 
 end

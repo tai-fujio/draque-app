@@ -2,7 +2,7 @@ class Monster < ApplicationRecord
   include Calculation
   # culcモジュールをmixinする
 
-  # モンスターは他のテーブルとうtながっていない
+  # モンスターは他のテーブルとつながっていない
   validates :name, presence: true, uniqueness: true
   validates :image, presence: true
   validates :bg_image, presence: true

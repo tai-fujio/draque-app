@@ -4,7 +4,16 @@
       <%= Message.start(@monster) %>
     </div>
     <div class="mt-4" id="battle-button-container">
-      <%= button_to "Attack", battle_path, class: 'btn btn-black btn-block', id: 'battle-button', remote: true, method: :get %>
+      <%= button_to "Attack", battle_path, class: 'btn btn-black btn-block form-btn', id: 'battle-button', remote: true, method: :get %>
     </div>
+
+    <div class="mt-4 " id="skill-button-container">
+      <%= button_to "coronavirus（コロナ）", skill_path, class: 'btn btn-black btn-block form-btn close-btn', id: 'skill-button', remote: true, method: :get %>
+    </div>
+
+    <div class="mt-4" id="exit-button-container">
+      <%= button_to "Escape", exit_path, class: 'btn btn-black btn-block form-btn', id: 'exit-button', remote: true, method: :get %>
+    </div>
+    
   </div>
 </div>

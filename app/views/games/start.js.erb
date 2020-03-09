@@ -6,4 +6,14 @@ battleMonsterImage.innerHTML = "<%= j(render 'games/monster/image') %>"
 battleMonster.style.opacity = "1"
 battleMessages.innerHTML = "<%= Message.start(@monster) %>"
 battleButtonContainer.style.display = "block"
+exitButtonContainer.style.display = "block"
+skillButtonContainer.style.display = "block"
+
+var BraveLevel = <%= @brave.level %>
+
+if(BraveLevel > 2){
+    skillButton.classList.remove("close-btn")
+    skillButton.classList.add("open-btn")
+}
+
 <%# startアクションの際起動 %>

@@ -1,0 +1,32 @@
+var exitMessage = <%= raw @exit_message.to_json %>
+
+timeout = 1000
+
+var deleteMonster = function(){
+    <%# モンスターの文字と画像を消す %>
+    battleMonster.style.opacity = "0"
+    timeout = 2000
+}
+
+var reloadMonster = function(){
+    document.getElementById("top-status").innerHTML = "<%= j(render "games/status/head_status") %>"
+    document.getElementById("monster-image-bg").innerHTML = "<%= j(render 'games/monster/bg') %>"
+    document.getElementById("top-monster-name").innerText = "<%= @monster.name %>"
+    document.getElementById("top-monster-image").innerHTML = "<%= j(render 'games/monster/image') %>"
+    $("#battle-modal").modal("hide")
+}
+
+var writeExitMessage = function(){
+    battleMessages.insertAdjacentHTML("beforeend","<p>" + exitMessage[0] + "</p>")
+}
+
+var messageFeed = function(){ 
+    writeExitMessage()
+    deleteMonster()
+    setTimeout(reloadMonster, 2000);
+}
+
+messageFeed()
+
+<%# battleの文字の入ったファイルでないと反映されない？ %>
+
