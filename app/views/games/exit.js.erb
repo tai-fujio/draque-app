@@ -21,9 +21,9 @@ var writeExitMessage = function(){
 }
 
 var messageFeed = function(){ 
-    deleteMonster()
-    reloadMonster()
     writeExitMessage()
+    deleteMonster()
+    setTimeout(reloadMonster, 2000);
 }
 
 messageFeed()
