@@ -2,6 +2,7 @@ class Message
   class << self
     def start(monster)
       "#{monster.name} appearded"
+      
     end
 
     def damage(attacker:, defender:)
@@ -20,6 +21,14 @@ class Message
 
     def lose(brave)
       "#{brave.name} was exhausted"
+    end
+
+    def level_up(brave)
+      "#{brave.name} went up level #{brave.level}!!"
+    end
+
+    def exit
+      "success escape"
     end
 
   end

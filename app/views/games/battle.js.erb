@@ -1,4 +1,4 @@
-var monsterDmgLgt = <%= @monster_damage_messages.length %>
+var monsterDmgLgt = <%= @monster_damage_messages&.length || 0 %>
 <%# メッセージはmonsterDamage以外nilの場合がある。その場合0が入るように。 %>
 var braveDmgLgt = <%= @brave_damage_messages&.length || 0 %>
 var victoryLgt = <%= @victory_messages&.length || 0 %>
@@ -6,6 +6,8 @@ var loseLgt = <%= @lose_messages&.length || 0 %>
 
 var allLgt = <%= @all_messages.length %>
 var allMessages = <%= raw @all_messages.to_json %>
+
+
 <%# jsでrubyの文字コードを使う場合.to_json必要。
 rowメソッドエスケープ処理をさせないようにしてれる %>
 
@@ -43,14 +45,18 @@ var continueBattle = function(){
         battleMessages.innerHTML = " "
         <%# battleMessagesに空のテキスト %>
         battleButtonContainer.style.display = "block"
+        exitButtonContainer.style.display = "block"
+        skillButtonContainer.style.display = "block"
         <%# battleButtonContainerを表示 %>
     }
 }
 
+
+
 <% if @victory_messages.present? || @lose_messages.present? %>
 var vanishMonster = function(){
     if (output === monsterDmgLgt + braveDmgLgt){
-        <%# モンスターの文字と画像を２秒かけて消す %>
+        <%# モンスターの文字と画像を消す %>
         battleMonster.style.opacity = "0"
         timeout = 1500
     }
@@ -75,6 +81,9 @@ var writeMessage = function(){
         battleMessages.insertAdjacentHTML("beforeend","<p>" + allMessages[output] + "</p>")
     }
 }
+
+
+
 <%# elementつまりbattleMessagesの直前（beforeendにより）に第二引数を入れ込む。 %>
 <%# allMessagesの中の配列のoutput番目のものを出力。 %>
 
@@ -99,11 +108,13 @@ var messageFeed = function(){
     <%# messageFeed入れることで繰り返すように処理をさせる %>
     <%# メッセージ総数より数が大きくなると、clearTimeoutによりTimeoutストップ %>
     writeMessage()
+
     output++
     time = setTimeout(messageFeed, timeout)
     if(output > allLgt)clearTimeout(time)
 }
 
-
 messageFeed()
+
+
 

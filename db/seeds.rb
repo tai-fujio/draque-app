@@ -16,5 +16,7 @@ User.find_or_create_by!(email: Email) do |user|
 end
 
 system "rake import_csv:monster_data"
+system "rake import_csv:exp_data"
+
 
 puts "初期データの投入に成功しました"

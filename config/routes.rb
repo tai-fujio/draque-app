@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'games#index'
   get "/start", to: "games#start"
   get "/battle", to: "games#battle"
-  # 上二つresourcesに存在するアクションとは別のオリジナル
+  get "/exit", to: "games#exit"
+  # 上3つresourcesに存在するアクションとは別のオリジナル
   resources :braves, only: :update
 end

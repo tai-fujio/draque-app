@@ -35,4 +35,18 @@ class Brave < ApplicationRecord
     self.exp = 0 if self.exp < 0
   end
 
+  def current_level
+    level = ExpTable.where("exp > ?", self.exp).minimum(:level)
+    level.present? ? level :ExpTable.maximum(:level) + 1
+  end
+
+  def status_up(level_up_timing)
+    level_up_timing.times do
+      self.max_hp += brave_status_up(self.level)
+      self.offense += brave_status_up(self.level)
+      self.defense += brave_status_up(self.level)
+      self.level += 1
+    end
+  end
+
 end

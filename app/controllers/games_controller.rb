@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
   def index
     @brave = current_user.brave
-    @monster = Monster.where("recommended_level <= ?",@brave.level).sample
-    # @monster = Monster.all.sample
+    # @monster = Monster.where("recommended_level <= ?",@brave.level).sample
+    @monster = Monster.all.sample
     # recommended_levelがbrave.levelより低いものをランダムで
     session[:brave]= @brave.session_attributes
     session[:monster]=@monster.session_attributes
@@ -15,9 +15,18 @@ class GamesController < ApplicationController
     session[:monster]= @monster.session_attributes
   end
 
-  def battle
-    battle_start
+  def exit
+    @exit_message = Message.exit
+    @brave = current_user.brave
+    # @monster = Monster.where("recommended_level <= ?",@brave.level).sample
+    @monster = Monster.all.sample
+  end
 
+  def battle
+
+    battle_start
+  
+    # モンスターか勇者のHPが０以下になった時の処理
     if @monster.hp <= 0
       victory_brave
       finish_battle
@@ -30,7 +39,11 @@ class GamesController < ApplicationController
 
   end
 
+  
+
   private
+
+    
 
     def battle_start
       @brave = Brave.new(session[:brave])
@@ -70,8 +83,15 @@ class GamesController < ApplicationController
       end
     
     def victory_brave
+      # データを最新に
       @brave = current_user.brave
+      # 経験値追加
       @brave.exp += session[:monster]["exp"]
+      level_up_timing = @brave.current_level - @brave.level
+      if level_up_timing > 0
+        @brave.status_up(level_up_timing)
+        @level_up_message = Message.level_up(@brave)
+      end
       @victory_messages = Message.victory(@monster)
     end
 
@@ -83,8 +103,8 @@ class GamesController < ApplicationController
 
     def finish_battle
       @brave.save
-      @monster = Monster.where("recommended_level <= ?",@brave.level).sample
-      # @monster = Monster.all.sample
+      # @monster = Monster.where("recommended_level <= ?",@brave.level).sample
+      @monster = Monster.all.sample
       session[:monster] = @monster.session_attributes
     end
 
@@ -92,6 +112,7 @@ class GamesController < ApplicationController
       [
         @monster_damage_messages,
         @brave_damage_messages,
+        @level_up_messages,
         @victory_messages,
         @lose_messages
       ].flatten.compact
