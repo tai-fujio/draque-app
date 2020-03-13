@@ -24,11 +24,11 @@ if(BraveLevel >= 2){
 
 
 <%# _headのActionボタン押したら、まず空のテキストをsercretボタンを自動で押して送信。そして５秒後に隠れているspellボタンが押され起動。 %>
-
 function actClick(){}
 function secretClick(){}
+
 document.getElementById("spell-button").onclick = function() {
-  setTimeout(spellClick, 8000);
+  setTimeout(spellClick, 10000);
   document.getElementById("secret-btn").click();
 }
 

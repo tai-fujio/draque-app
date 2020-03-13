@@ -30,7 +30,7 @@
       <div class="modal-body">
         <%= form_with model: @brave  do |f| %>
           <div class="form-group" id="text-box"> 
-            <%= f.label :５秒以内に唱えろ, class: "control-label" %>
+            <%= f.label :１０秒以内に唱えろ, class: "control-label" %>
             <%= f.text_field :word, class: "form-control", require: true ,id:"text-btn"%>
           </div>
 
@@ -40,9 +40,9 @@
             <%= f.submit "となえよう", class:"btn btn-black btn-block form-btn close-btn" ,id:"secret-btn" ,onclick:"secretClick();"%>
           </div>
         <% end %>
-          <p>呪文1：div</p>
-          <p>呪文2：マコなり社長</p>
-          <p>呪文3：tech expert 最高！！</p>
+          <p>呪文1：バルス</p>
+          <p>呪文2：エクスプロージョン</p>
+          <p>呪文3：ピーリカピリララポポリナペーペルト</p>
         <%= button_to "Spell", spell_path, class: 'btn btn-black btn-block form-btn close-btn', id:'action-btn', remote: true, method: :get, onclick:"actClick();" %>
 
 

@@ -2,7 +2,7 @@ class Message
   class << self
     def start(monster)
       # "#{monster.name} appearded"
-      "#{monster.name} が現れた"
+      "#{monster.name} が現れた!!"
       
     end
 
@@ -13,7 +13,7 @@ class Message
       # ]
       [
         "#{attacker.name} の攻撃!!",
-        "#{defender.name} は #{defender.damage} ダメージ!!"
+        "#{defender.name} は #{defender.damage} ダメージを受けた!!"
       ]
     end
 

@@ -111,11 +111,11 @@ class GamesController < ApplicationController
     def spell_battle_start
       @brave = Brave.new(session[:brave])
       @monster = Monster.new(session[:monster])
-      if @word == "div"
+      if @word == "バルス"
         @brave.spell_1_attack(@monster)
-      elsif @word == "マコなり社長"
+      elsif @word == "エクスプロージョン"
         @brave.spell_2_attack(@monster)
-      elsif @word == "tech expert 最高！！"
+      elsif @word == "ピーリカピリララポポリナペーペルト"
         @brave.spell_3_attack(@monster)
       else
         @brave.spell_attack(@monster)

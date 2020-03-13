@@ -1,8 +1,10 @@
 name,image,bg_image,recommended_level,max_hp,offense,defense,exp
-くらげオバケ,kurage.png,Meadow.png,1,8,10,9,2
-だいこんオバケ,daikon.png,load.jpg,1,8,18,7,3
-ひとつめオバケ,hitotsume.png,Woods.png,5,25,20,20,30
-おにオバケ,oni.png,load.jpg,9,35,60,20,50
-ひゃくめオバケ,hyakume.png,Woods.png,14,70,65,55,120
-トップライフコーチ,komisan2.png,boss.png,1,8,10,8,4
+リザードマン,rezardman.png,Meadow.png,1,8,10,9,3
+ヒッポグリフ,hippogriff.png,Meadow.png,1,8,10,8,4
+スケルトン,skeleton.png,Woods.png,1,8,18,7,3
+シュウ,shyu.png,cave.jpg,2,25,20,20,30
+キマイラ,chimera.png,Labyrinth.jpg,3,35,60,20,50
+マンティコア,rion.png,prison.png,5,70,65,55,120
+ヒュドラ,dragon.png,cave2.jpeg,5,70,65,55,120
+
 
