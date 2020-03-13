@@ -3,6 +3,8 @@
 module Calculation
   Damage_Percentage_Range = 30..60
   Skill_Damage_Percentage_Range = 10..100
+  Spell_1_Damage_Percentage_Range = 40..70
+  Spell_2_Damage_Percentage_Range = 50..90
   Brave_Status_Up_Percentage_Range = 40..60
   Brave_Status_Up_Bonus_Range = 0..2
 
@@ -35,6 +37,35 @@ module Calculation
       [damage.to_i, 1].max
     end
   end
+
+  def spell_1_damage_calc(attacker: self,defender: monster)
+    offense = attacker.offense
+    defense = defender.defense
+
+    random_rate = rand(Spell_1_Damage_Percentage_Range) / 100.0
+    damage = (offense - defense / 2) * random_rate
+    [damage.to_i, 1].max
+  end
+
+  def spell_2_damage_calc(attacker: self,defender: monster)
+    offense = attacker.offense
+    defense = defender.defense
+
+    random_rate = rand(Spell_2_Damage_Percentage_Range) / 100.0
+    damage = (offense - defense / 2) * random_rate
+    [damage.to_i, 1].max
+  end
+
+
+  def monster_spell_damage_calc(attacker: self,defender: monster)
+    if defender.name == "絶対にPGになるマン"
+      damage = 0
+    else
+      damage = 3
+    end
+  end
+
+  
 
 
   # model/braveのレベルアップ量で使う

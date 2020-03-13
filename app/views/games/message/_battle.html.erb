@@ -11,9 +11,46 @@
       <%= button_to "coronavirus（コロナ）", skill_path, class: 'btn btn-black btn-block form-btn close-btn', id: 'skill-button', remote: true, method: :get %>
     </div>
 
+    <div class="mt-4 " id="spell-button-container">
+      <%# <%= button_to "spell", spell_path, class: 'btn btn-black btn-block form-btn close-btn', id:'spell-button', remote: true, method: :get,data:{toggle: "modal",target:"#spell-modal"} %> 
+      <a class='btn btn-black btn-block form-btn close-btn' id="spell-button" data-toggle="modal" data-target="#spell-modal" onclick="spellClick();"> spell</a> 
+    </div>
+
     <div class="mt-4" id="exit-button-container">
       <%= button_to "Escape", exit_path, class: 'btn btn-black btn-block form-btn', id: 'exit-button', remote: true, method: :get %>
     </div>
-    
+   
   </div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="spell-modal" data-backdrop="static" >
+  <div class="modal-dialog modal-dialog-centered"  role="document">
+    <div class="modal-content bg-dark">
+
+      <div class="modal-body">
+        <%= form_with model: @brave  do |f| %>
+          <div class="form-group" id="text-box"> 
+            <%= f.label :５秒以内に唱えろ, class: "control-label" %>
+            <%= f.text_field :word, class: "form-control", require: true ,id:"text-btn"%>
+          </div>
+
+          <div class="form-group" id="submit-btn" >
+            <%# <%= f.submit "set", class:"btn btn-black btn-block form-btn" ,id:"set-btn" ,onclick:"setClick();" %>
+            <%= f.submit "唱える", class:"btn btn-black btn-block form-btn" ,id:"set-btn" %>
+            <%= f.submit "となえよう", class:"btn btn-black btn-block form-btn close-btn" ,id:"secret-btn" ,onclick:"secretClick();"%>
+          </div>
+        <% end %>
+          <p>呪文1：div</p>
+          <p>呪文2：マコなり社長</p>
+          <p>呪文3：tech expert 最高！！</p>
+        <%= button_to "Spell", spell_path, class: 'btn btn-black btn-block form-btn close-btn', id:'action-btn', remote: true, method: :get, onclick:"actClick();" %>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

@@ -1,5 +1,5 @@
 namespace :import_csv do
-  desc "monsters_data import"
+  desc "monster_data import"
   task monster_data: :environment do
     Monster.destroy_all
     monster_list = Import.csv_info(path: 'db/csv/monsters.csv')

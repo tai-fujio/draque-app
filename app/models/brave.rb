@@ -13,6 +13,7 @@ class Brave < ApplicationRecord
   validates :max_hp, presence: true
   validates :offense, presence: true
   validates :defense, presence: true
+  validates :word ,presence: false
 
   # 戦闘中のゲッタ・セッタ
   attr_accessor :hp, :damage
@@ -33,9 +34,28 @@ class Brave < ApplicationRecord
   def skill_attack(monster)
     monster.hp -= monster.damage = skill_damage_calc(attacker: self,defender: monster)
     monster.hp = 0 if monster.hp < 0
-    # モンスターのHPが0以下になったら0にする。
   end
 
+
+  def spell_1_attack(monster)
+    monster.hp -= monster.damage = spell_1_damage_calc(attacker: self,defender: monster)
+    monster.hp = 0 if monster.hp < 0
+  end
+
+  def spell_2_attack(monster)
+    monster.hp -= monster.damage = spell_2_damage_calc(attacker: self,defender: monster)
+    monster.hp = 0 if monster.hp < 0
+  end
+
+  def spell_3_attack(monster)
+    monster.hp -= monster.damage = 777
+    monster.hp = 0 if monster.hp < 0
+  end
+
+  def spell_attack(monster)
+    monster.hp -= monster.damage = 0
+    monster.hp = 0 if monster.hp < 0
+  end
 
 
   def lose_exp(lose_exp)

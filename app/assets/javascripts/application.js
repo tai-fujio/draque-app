@@ -26,6 +26,7 @@ document.addEventListener("turbolinks:load",()=>{
     const battleButton = document.getElementById("battle-button")
     const exitButton = document.getElementById("exit-button")
     window.skillButton = document.getElementById("skill-button")
+    window.spellButton = document.getElementById("spell-button")
     window.battleBody = document.getElementById("battle-body")
 
     window.battleMonster = document.getElementById("battle-monster")
@@ -37,11 +38,16 @@ document.addEventListener("turbolinks:load",()=>{
     window.battleButtonContainer = document.getElementById("battle-button-container")
     window.exitButtonContainer = document.getElementById("exit-button-container")
     window.skillButtonContainer = document.getElementById("skill-button-container")
+    window.spellButtonContainer = document.getElementById("spell-button-container")
+
+    window.setBtn = document.getElementById("set-btn")
+    window.actionBtn = document.getElementById("action-btn")
 
     var display = function(){
         battleButtonContainer.style.display = "none"
         exitButtonContainer.style.display = "none"
         skillButtonContainer.style.display = "none"
+        spellButtonContainer.style.display = "none"
         battleMessages.innerText = ""
     }
 
@@ -54,6 +60,8 @@ document.addEventListener("turbolinks:load",()=>{
     skillButton.addEventListener("click",() =>{
         display()
     })
+    spellButton.addEventListener("click",() =>{
+        display()
+    })
     
 })
-

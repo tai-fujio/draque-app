@@ -1,3 +1,5 @@
+
+
 var monsterDmgLgt = <%= @monster_damage_messages&.length || 0 %>
 <%# メッセージはmonsterDamage以外nilの場合がある。その場合0が入るように。 %>
 var braveDmgLgt = <%= @brave_damage_messages&.length || 0 %>
@@ -13,8 +15,7 @@ rowメソッドエスケープ処理をさせないようにしてれる %>
 
 var output = 0
 var time
-var timeout = 500
-<%# ミリ単位0.8秒 %>
+var timeout = 1000
 
 var flashTimer
 var monsterRcvDmg = function(){
@@ -48,6 +49,7 @@ var continueBattle = function(){
         exitButtonContainer.style.display = "block"
         skillButtonContainer.style.display = "block"
         spellButtonContainer.style.display = "block"
+
         <%# battleButtonContainerを表示 %>
     }
 }
@@ -115,7 +117,10 @@ var messageFeed = function(){
     if(output > allLgt)clearTimeout(time)
 }
 
+ $("#spell-modal").modal("hide") 
+ 
 messageFeed()
 
 
 
+ 

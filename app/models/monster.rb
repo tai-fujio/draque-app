@@ -12,7 +12,7 @@ class Monster < ApplicationRecord
   validates :offense, presence: true
   validates :defense, presence: true
 
-  attr_accessor :hp, :damage
+  attr_accessor :hp, :damage 
 
   def session_attributes
     attributes.slice("name","offense","defense","exp").merge("hp" => self.max_hp)
@@ -23,6 +23,14 @@ class Monster < ApplicationRecord
     brave.hp = 0 if brave.hp < 0
       # 勇者のHPが0以下になったら0にする。
   end
+
+  def spell_attack(brave)
+    brave.hp -= brave.damage = monster_spell_damage_calc(attacker: self,defender: brave)
+    brave.hp = 0 if brave.hp < 0
+      # 勇者のHPが0以下になったら0にする。
+  end
+
+
 
 
 end

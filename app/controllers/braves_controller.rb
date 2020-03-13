@@ -5,8 +5,9 @@ class BravesController < ApplicationController
   end
 
   private
+
   
   def brave_params
-    params.require(:brave).permit(:name)
+    params.require(:brave).permit(:name,:word)
   end
 end
