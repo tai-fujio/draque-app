@@ -1,0 +1,10 @@
+<div class="game-container message-container mb-5">
+  <div class="px-4 py-3 battle-message-container">
+    <div id="battle-messages">
+      <%= Message.start(@monster) %>
+    </div>
+    <div class="mt-4" id="battle-button-container">
+      <%= button_to 'たたかう', battle_path, class: 'btn btn-black btn-block', id: 'battle-button', remote: true, method: :get %>
+    </div>
+  </div>
+</div>

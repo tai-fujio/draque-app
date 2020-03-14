@@ -1,0 +1,10 @@
+// バトル画面のステータスを更新
+document.getElementById('battle-status').innerHTML = "<%= j(render 'games/status/battle_status') %>"
+// バトル画面のモンスターを更新
+document.getElementById('battle-monster-name').innerText = '<%= @monster.name %>'
+battleMonsterImage.innerHTML = "<%= j(render 'games/monster/image') %>"
+// モンスターを表示
+battleMonster.style.opacity = '1'
+// バトル画面のメッセージ欄を更新
+battleMessages.innerHTML = "<%= Message.start(@monster) %>"
+battleButtonContainer.style.display = 'block'

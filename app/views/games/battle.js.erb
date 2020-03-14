@@ -1,0 +1,111 @@
+var MONSTER_DAMAGE_LENGTH = <%= @monster_damage_messages.length %>
+// メッセージが nil の場合には 0 が代入されるようにしておく
+var BRAVE_DAMAGE_LENGTH = <%= @brave_damage_messages&.length || 0 %>
+var VICTORY_LENGTH = <%= @victory_messages&.length || 0 %>
+var DEFEAT_LENGTH = <%= @defeat_messages&.length || 0 %>
+
+// メッセージ総数
+var ALL_LENGTH = <%= @all_messages.length %>
+
+// Rubyの配列をJSの配列に変換
+var allMessages = <%= raw @all_messages.to_json %>
+
+// タイマー用
+var count = 0
+var timer
+// メッセージ送りの間隔（単位はミリ秒）
+var timeout = 500
+
+var flashingTimer
+var monsterReceivedDamage = function () {
+    if (count === MONSTER_DAMAGE_LENGTH - 1) {
+        // モンスターを50ミリ秒ごとに点滅
+        flashingTimer = setInterval(function () {
+            battleMonsterImage.style.opacity ^= '1'
+        }, 50)
+    } else if (count === MONSTER_DAMAGE_LENGTH) {
+        // 点滅を解除して表示状態に
+        clearInterval(flashingTimer)
+        battleMonsterImage.style.opacity = '1'
+    }
+}
+
+var braveReceivedDamage = function () {
+    if (count === MONSTER_DAMAGE_LENGTH + BRAVE_DAMAGE_LENGTH - 1) {
+        // 勇者がダメージを受けたときに戦闘画面のHP表示を更新
+        document.getElementById('battle-hp').innerText = "<%= session[:brave]['hp'] %>"
+        // 画面を揺らす
+        battleBody.classList.add('swing')
+        timeout = 1000
+    } else if (count == MONSTER_DAMAGE_LENGTH + BRAVE_DAMAGE_LENGTH) {
+        // 画面を揺れを無しにする
+        battleBody.classList.remove('swing')
+    }
+}
+
+var continueBattle = function () {
+    if (count === ALL_LENGTH) {
+        // 戦闘画面の「たたかう」ボタンを表示
+        battleMessages.innerHTML = ''
+        battleButtonContainer.style.display = 'block'
+    }
+}
+
+<% if @victory_messages.present? || @defeat_messages.present? %>
+var disappearMonster = function () {
+    if (count === MONSTER_DAMAGE_LENGTH + BRAVE_DAMAGE_LENGTH) {
+        // モンスターの文字と画像を非表示にする
+        battleMonster.style.opacity = '0'
+        timeout = 1500
+    }
+}
+
+var reappearMonster = function () {
+    if (count === ALL_LENGTH) {
+        // ひとまずリロードさせます
+        // トップページのステータスを更新
+        document.getElementById('top-status').innerHTML = "<%= j(render 'games/status/top_status') %>"
+        // トップページのモンスターを更新
+        document.getElementById('top-monster-name').innerText = '<%= @monster.name %>'
+        document.getElementById('top-monster-image').innerHTML = "<%= j(render 'games/monster/image') %>"
+        // モーダルを閉じる
+        $('#battle-modal').modal('hide')
+    }
+}
+<% end %>
+
+var putsMessage = function () {
+    if (count < ALL_LENGTH) {
+        // メッセージ出力は共通処理としておく。
+        battleMessages.insertAdjacentHTML('beforeend', '<p>' + allMessages[count] + '</p>')
+    }
+}
+
+var messageFeed = function () {
+  monsterReceivedDamage()
+  if (VICTORY_LENGTH > 0) {
+        // 勝利した場合
+        disappearMonster()
+        reappearMonster()
+    } else if (DEFEAT_LENGTH > 0) {
+        // 敗北した場合
+        braveReceivedDamage()
+        if (count === MONSTER_DAMAGE_LENGTH + BRAVE_DAMAGE_LENGTH - 1) timeout = 2000
+        reappearMonster()
+    } else {
+        // 戦闘が継続する場合
+        braveReceivedDamage()
+        continueBattle()
+    }
+    putsMessage()
+
+    count++
+    // timeout 秒後に messageFeed() を動作
+    // （自分自身の関数を呼び出すことで繰り返し処理を実現している）
+    timer = setTimeout(messageFeed, timeout)
+    // ループ処理を終了させる
+    if (count > ALL_LENGTH) clearTimeout(timer)
+}
+
+// メッセージ送りなどを作動
+messageFeed()
