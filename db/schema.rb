@@ -10,7 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_080005) do
+ActiveRecord::Schema.define(version: 2020_03_01_061026) do
+
+  create_table "braves", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name", null: false
+    t.integer "level", null: false
+    t.bigint "exp", null: false
+    t.integer "max_hp", null: false
+    t.integer "offense", null: false
+    t.integer "defense", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_braves_on_user_id"
+  end
+
+  create_table "exp_tables", force: :cascade do |t|
+    t.integer "level", null: false
+    t.bigint "exp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exp"], name: "index_exp_tables_on_exp"
+  end
+
+  create_table "monsters", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image", null: false
+    t.integer "recommended_level", null: false
+    t.integer "max_hp", null: false
+    t.integer "offense", null: false
+    t.integer "defense", null: false
+    t.integer "exp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_monsters_on_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

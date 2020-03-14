@@ -1,0 +1,6 @@
+// トップページの勇者名を変更
+document.getElementById('top-brave-name').innerText = "<%= @brave.name %>"
+// 戦闘ページの勇者名を変更
+document.getElementById('battle-brave-name').innerText = "<%= @brave.name %>"
+// モーダルを閉じる
+$('#edit-modal').modal('hide')

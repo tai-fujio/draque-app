@@ -1,0 +1,20 @@
+<div class="modal fade" id="edit-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="change-name-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content game-container text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="change-name-label">設定</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <hr class="game-line">
+      <div class="modal-body">
+        <%= render 'braves/body' %>
+      </div>
+      <hr class="game-line">
+      <div class="modal-footer">
+        <%= render 'braves/footer' %>
+      </div>
+    </div>
+  </div>
+</div>

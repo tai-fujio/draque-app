@@ -1,0 +1,6 @@
+name,image,recommended_level,max_hp,offense,defense,exp
+くらげオバケ,kurage.png,1,8,10,9,2
+だいこんオバケ,daikon.png,1,8,18,7,3
+ひとつめオバケ,hitotsume.png,5,25,20,20,30
+おにオバケ,oni.png,9,35,60,20,50
+ひゃくめオバケ,hyakume.png,14,70,65,55,120
