@@ -48,7 +48,7 @@ class Brave < ApplicationRecord
   end
 
   def spell_3_attack(monster)
-    monster.hp -= monster.damage = 777
+    monster.hp -= monster.damage = 100
     monster.hp = 0 if monster.hp < 0
   end
 

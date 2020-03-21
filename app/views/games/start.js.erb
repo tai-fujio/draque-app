@@ -29,7 +29,7 @@ function secretClick(){} %>
 
 document.getElementById("spell-button").onclick = function() {
   setTimeout(spellClick, 5000);
-  document.getElementById("secret-btn").click();
+  <%# document.getElementById("secret-btn").click(); %>
 }
 
 function spellClick() {
@@ -38,7 +38,7 @@ function spellClick() {
 
 <%# secretボタンが押されるとテキストの中身を空に %>
 $(function () {
-  $("#secret-btn").click( function() {
+  $("#action-btn").click( function() {
     $("#text-btn").val("");
   });
 });

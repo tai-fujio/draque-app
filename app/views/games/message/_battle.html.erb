@@ -34,13 +34,13 @@
           <div class="form-group" id="submit-btn" >
             <%# <%= f.submit "set", class:"btn btn-black btn-block form-btn" ,id:"set-btn" ,onclick:"setClick();" %>
             <%= f.submit "呪文を唱える", class:"btn btn-black btn-block form-btn" ,id:"set-btn" %>
-            <%= f.submit "", class:"btn btn-black btn-block form-btn display-none-btn" ,id:"secret-btn" %>
+            <%#= f.submit "", class:"btn btn-black btn-block form-btn display-none-btn" ,id:"secret-btn" %>
           </div>
         <% end %>
           <p>呪文1：メラ</p>
           <p>呪文2：ギラ</p>
           <p>呪文3：ギガスラッシュ</p>
-        <%= button_to "Spell", spell_path, class: 'btn btn-black btn-block form-btn display-none-btn', id:'action-btn', remote: true, method: :get, onclick:"actClick();" %>
+        <%= button_to "", spell_path, class: 'btn btn-black btn-block form-btn display-none-btn', id:'action-btn', remote: true, method: :get %>
       </div>
     </div>
   </div>
