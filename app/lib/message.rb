@@ -12,7 +12,7 @@ class Message
       #   "#{defender.name} received #{defender.damage} damage!!"
       # ]
       [
-        "#{attacker.name} の攻撃!!",
+        "#{attacker.name} のターン!!",
         "#{defender.name} は #{defender.damage} ダメージを受けた!!"
       ]
     end

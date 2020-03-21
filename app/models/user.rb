@@ -25,12 +25,12 @@ class User < ApplicationRecord
 
   def initial_brave
     {
-      name:"絶対PGになるマン",
+      name:"勇者",
       exp: 0,
       level: 1,
       max_hp: 15,
-      offense: 10,
-      defense: 10
+      offense: 100,
+      defense: 100
     }
   end
 

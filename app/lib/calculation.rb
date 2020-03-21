@@ -13,7 +13,7 @@ module Calculation
     defense = defender.defense
 
     if defender.name == "シュウ"
-      damage = 0
+      damage = 1
     else
       # 割合にしたいので100で割る。ランダム値が50なら 0.5=50% になる
       random_rate = rand(Damage_Percentage_Range) / 100.0
@@ -58,7 +58,7 @@ module Calculation
 
 
   def monster_spell_damage_calc(attacker: self,defender: monster)
-    if defender.name == "絶対にPGになるマン"
+    if defender.name == "勇者"
       damage = 0
     else
       damage = 3
