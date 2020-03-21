@@ -12,7 +12,7 @@ module Calculation
     offense = attacker.offense
     defense = defender.defense
 
-    if defender.name == "シュウ"
+    if defender.name == "ボス"
       damage = 1
     else
       # 割合にしたいので100で割る。ランダム値が50なら 0.5=50% になる
