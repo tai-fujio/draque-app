@@ -25,7 +25,7 @@
 document.addEventListener("turbolinks:load",()=>{
     const battleButton = document.getElementById("battle-button")
     const exitButton = document.getElementById("exit-button")
-    window.skillButton = document.getElementById("skill-button")
+    // window.skillButton = document.getElementById("skill-button")
     window.spellButton = document.getElementById("spell-button")
     window.battleBody = document.getElementById("battle-body")
 
@@ -57,9 +57,9 @@ document.addEventListener("turbolinks:load",()=>{
     exitButton.addEventListener("click",() =>{
         display()
     })
-    skillButton.addEventListener("click",() =>{
-        display()
-    })
+    // skillButton.addEventListener("click",() =>{
+    //     display()
+    // })
     spellButton.addEventListener("click",() =>{
         display()
     })

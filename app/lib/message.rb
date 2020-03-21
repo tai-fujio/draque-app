@@ -23,8 +23,8 @@ class Message
       #   "Awarded #{monster.exp} points!!"
       # ]
       [
-        " #{monster.name}は倒れた!!",
-        "経験値を #{monster.exp} 獲得!!"
+        " #{monster.name}を倒した!!",
+        "経験値を #{monster.exp} 獲得した!!"
       ]
     end
 

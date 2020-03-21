@@ -7,15 +7,15 @@ battleMonster.style.opacity = "1"
 battleMessages.innerHTML = "<%= Message.start(@monster) %>"
 battleButtonContainer.style.display = "block"
 exitButtonContainer.style.display = "block"
-skillButtonContainer.style.display = "block"
+<%# skillButtonContainer.style.display = "block" %>
 spellButtonContainer.style.display = "block"
 
 var BraveLevel = <%= @brave.level %>
 
-if(BraveLevel >= 2){
+<%# if(BraveLevel >= 2){
     skillButton.classList.remove("close-btn")
     skillButton.classList.add("open-btn")
-}
+} %>
 
 if(BraveLevel >= 2){
   spellButton.classList.remove("close-btn")
