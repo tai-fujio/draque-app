@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_095952) do
   create_table "braves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name", null: false
+    t.string "spell"
     t.integer "level", null: false
     t.bigint "exp", null: false
     t.integer "max_hp", null: false
