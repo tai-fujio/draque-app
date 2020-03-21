@@ -1,4 +1,5 @@
 # README
+I cloned maru7500/dq_copy_app as a reference.  
 * START  
 1. git clone  
 1. bundle install  
