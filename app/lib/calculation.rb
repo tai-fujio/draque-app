@@ -28,14 +28,9 @@ module Calculation
   def skill_damage_calc(attacker: self,defender: monster)
     offense = attacker.offense
     defense = defender.defense
-
-    if defender.name == "トップライフコーチ"
-      damage = 777
-    else
-      random_rate = rand(Skill_Damage_Percentage_Range) / 100.0
-      damage = (offense - defense / 2) * random_rate
-      [damage.to_i, 1].max
-    end
+    random_rate = rand(Skill_Damage_Percentage_Range) / 100.0
+    damage = (offense - defense / 2) * random_rate
+    [damage.to_i, 1].max
   end
 
   def spell_1_damage_calc(attacker: self,defender: monster)
@@ -59,9 +54,7 @@ module Calculation
 
   def monster_spell_damage_calc(attacker: self,defender: monster)
     if defender.name == "勇者"
-      damage = 0
-    else
-      damage = 3
+      damage = [*1..10].sample
     end
   end
 

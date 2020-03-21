@@ -12,7 +12,7 @@
 brew uninstall --force mysql && brew install mysql  
 then  
 sudo gem install mysql2  
-or  
+and/or  
 brew install openssl  
 then  
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/  

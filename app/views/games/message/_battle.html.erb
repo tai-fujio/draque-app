@@ -7,11 +7,11 @@
       <%= button_to "Attack", battle_path, class: 'btn btn-black btn-block form-btn', id: 'battle-button', remote: true, method: :get %>
     </div>
     <div class="mt-4 " id="skill-button-container">
-      <%#= link_to "", skill_path, class: 'btn btn-black btn-block form-btn close-btn', id: 'skill-button', remote: true, method: :get %>
+      <%#= link_to "", skill_path, class: 'btn btn-black btn-block form-btn display-none-btn', id: 'skill-button', remote: true, method: :get %>
     </div>
     <div class="mt-4 " id="spell-button-container">
-      <%# <%= button_to "spell", spell_path, class: 'btn btn-black btn-block form-btn close-btn', id:'spell-button', remote: true, method: :get,data:{toggle: "modal",target:"#spell-modal" %> 
-      <a class='btn btn-black btn-block form-btn close-btn' id="spell-button" data-toggle="modal" data-target="#spell-modal" onclick="spellClick();"> spell</a> 
+      <%# <%= button_to "spell", spell_path, class: 'btn btn-black btn-block form-btn display-none-btn', id:'spell-button', remote: true, method: :get,data:{toggle: "modal",target:"#spell-modal" %> 
+      <a class='btn btn-black btn-block form-btn display-none-btn' id="spell-button" data-toggle="modal" data-target="#spell-modal" onclick="spellClick();"> Spell</a> 
     </div>
 
     <div class="mt-4" id="exit-button-container">
@@ -33,14 +33,14 @@
 
           <div class="form-group" id="submit-btn" >
             <%# <%= f.submit "set", class:"btn btn-black btn-block form-btn" ,id:"set-btn" ,onclick:"setClick();" %>
-            <%= f.submit "唱える", class:"btn btn-black btn-block form-btn" ,id:"set-btn" %>
-            <%= f.submit "となえよう", class:"btn btn-black btn-block form-btn close-btn" ,id:"secret-btn" ,onclick:"secretClick();"%>
+            <%= f.submit "呪文を唱える", class:"btn btn-black btn-block form-btn" ,id:"set-btn" %>
+            <%= f.submit "", class:"btn btn-black btn-block form-btn display-none-btn" ,id:"secret-btn" %>
           </div>
         <% end %>
           <p>呪文1：メラ</p>
           <p>呪文2：ギラ</p>
           <p>呪文3：ギガスラッシュ</p>
-        <%= button_to "Spell", spell_path, class: 'btn btn-black btn-block form-btn close-btn', id:'action-btn', remote: true, method: :get, onclick:"actClick();" %>
+        <%= button_to "Spell", spell_path, class: 'btn btn-black btn-block form-btn display-none-btn', id:'action-btn', remote: true, method: :get, onclick:"actClick();" %>
       </div>
     </div>
   </div>
